@@ -87,7 +87,6 @@ namespace ASMEngine
         }
         public static int ToNumber(string line)
         {
-            int res = 0;
             try
             {
                 line = line.ToUpper();

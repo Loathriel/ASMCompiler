@@ -6,16 +6,16 @@ namespace SimASM
 {
     public partial class Form1 : Form
     {
-        Process cmdProcess = null;
-        StreamReader errorReader = null;
-        StreamReader outputReader = null;
-        StreamWriter inputWriter = null;
+        Process? cmdProcess = null;
+        StreamReader? errorReader = null;
+        StreamReader? outputReader = null;
+        StreamWriter? inputWriter = null;
         byte[] errorBuffer = new byte[1];
         byte[] outputBuffer = new byte[1];
         StringBuilder outputString = new StringBuilder();
 
-        private string sourceFilename;
-        private string binFilename;
+        private string? sourceFilename;
+        private string? binFilename;
 
         public Form1()
         {
@@ -224,6 +224,7 @@ namespace SimASM
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 sourceFilename = openFileDialog1.FileName;
+                binFilename = null;
                 StreamReader file = new StreamReader(sourceFilename);
                 CodeSource.Text = file.ReadToEnd();
                 file.Close();                
