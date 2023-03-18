@@ -80,7 +80,7 @@ namespace SimASM
             OutputBeginRead();
             tabControl1.SelectedIndex = 0;
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void runButton_Click(object sender, EventArgs e)
         {
             run();            
         }
@@ -127,7 +127,7 @@ namespace SimASM
             richTextBox3.Text = "";
             try
             {
-                if (checkBox2.Checked)
+                if (saveBeforeCompileCheckBox.Checked)
                     save();
                 ASMFile file = new ASMFile(new List<string>(CodeSource.Lines));
                 file.MakeComFile = Settings.IfMakeCom;
@@ -168,12 +168,12 @@ namespace SimASM
             }
         }
         
-        private void button2_Click(object sender, EventArgs e)
+        private void compileButton_Click(object sender, EventArgs e)
         {
             build();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void compileAndRunButton_Click(object sender, EventArgs e)
         {
             binFilename = null;
             run();            
@@ -184,22 +184,22 @@ namespace SimASM
             fileTabPage.Text = sourceFilename.Substring(sourceFilename.LastIndexOf("\\") + 1);
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void saveFileButton_Click(object sender, EventArgs e)
         {
             save();
-            button6.Enabled = false;
+            saveFileButton.Enabled = false;
         }
 
         private void CodeSource_TextChanged(object sender, EventArgs e)
         {
             if (!fileTabPage.Text.EndsWith("*"))
             {
-                button6.Enabled = true;
+                saveFileButton.Enabled = true;
                 fileTabPage.Text += "*";
             }
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void saveFileAsButton_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -219,7 +219,7 @@ namespace SimASM
             f.Close();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void openFileButton_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -233,9 +233,9 @@ namespace SimASM
 
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void makeComCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.IfMakeCom = checkBox1.Checked;
+            Settings.IfMakeCom = makeComCheckBox.Checked;
         }
 
         private void button4_Click(object sender, EventArgs e)

@@ -28,14 +28,13 @@ namespace SimASM
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.process1 = new System.Diagnostics.Process();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.runButton = new System.Windows.Forms.Button();
+            this.compileButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -47,13 +46,13 @@ namespace SimASM
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button3 = new System.Windows.Forms.Button();
+            this.compileAndRunButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
             this.workDirTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.saveBeforeCompileCheckBox = new System.Windows.Forms.CheckBox();
+            this.makeComCheckBox = new System.Windows.Forms.CheckBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -63,9 +62,9 @@ namespace SimASM
             this.fileTabPage = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.openFileButton = new System.Windows.Forms.Button();
+            this.saveFileButton = new System.Windows.Forms.Button();
+            this.saveFileAsButton = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
@@ -99,44 +98,43 @@ namespace SimASM
             this.process1.StartInfo.FileName = "C:\\Projects\\Asembler\\ConsoleApplication1\\bin\\Debug\\out.exe";
             this.process1.StartInfo.LoadUserProfile = false;
             this.process1.StartInfo.Password = null;
-            this.process1.StartInfo.RedirectStandardError = true;
             this.process1.StartInfo.RedirectStandardInput = true;
             this.process1.StartInfo.RedirectStandardOutput = true;
             this.process1.StartInfo.StandardErrorEncoding = null;
+            this.process1.StartInfo.StandardInputEncoding = null;
             this.process1.StartInfo.StandardOutputEncoding = null;
             this.process1.StartInfo.UserName = "";
-            this.process1.StartInfo.UseShellExecute = false;
             this.process1.SynchronizingObject = this;
             this.process1.OutputDataReceived += new System.Diagnostics.DataReceivedEventHandler(this.process1_OutputDataReceived);
             // 
-            // button1
+            // runButton
             // 
-            this.button1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(19, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 28);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Run";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.runButton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.runButton.Location = new System.Drawing.Point(19, 4);
+            this.runButton.Name = "runButton";
+            this.runButton.Size = new System.Drawing.Size(95, 28);
+            this.runButton.TabIndex = 2;
+            this.runButton.Text = "Run";
+            this.runButton.UseVisualStyleBackColor = true;
+            this.runButton.Click += new System.EventHandler(this.runButton_Click);
             // 
-            // button2
+            // compileButton
             // 
-            this.button2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(120, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 28);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Compile";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.compileButton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.compileButton.Location = new System.Drawing.Point(120, 4);
+            this.compileButton.Name = "compileButton";
+            this.compileButton.Size = new System.Drawing.Size(96, 28);
+            this.compileButton.TabIndex = 3;
+            this.compileButton.Text = "Compile";
+            this.compileButton.UseVisualStyleBackColor = true;
+            this.compileButton.Click += new System.EventHandler(this.compileButton_Click);
             // 
             // tabControl1
             // 
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabControl1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tabControl1.Location = new System.Drawing.Point(14, 309);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -191,7 +189,7 @@ namespace SimASM
             this.CodeSource.Name = "CodeSource";
             this.CodeSource.Size = new System.Drawing.Size(438, 228);
             this.CodeSource.TabIndex = 5;
-            this.CodeSource.Text = resources.GetString("CodeSource.Text");
+            this.CodeSource.Text = "";
             this.CodeSource.TextChanged += new System.EventHandler(this.CodeSource_TextChanged);
             // 
             // CompileResults
@@ -217,7 +215,7 @@ namespace SimASM
             // LineNumer
             // 
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.LineNumer.DefaultCellStyle = dataGridViewCellStyle1;
             this.LineNumer.HeaderText = "Line #";
             this.LineNumer.Name = "LineNumer";
@@ -236,7 +234,7 @@ namespace SimASM
             // 
             // Code
             // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Code.DefaultCellStyle = dataGridViewCellStyle3;
             this.Code.HeaderText = "Machine code";
             this.Code.Name = "Code";
@@ -249,24 +247,24 @@ namespace SimASM
             this.Source.HeaderText = "Source line";
             this.Source.Name = "Source";
             // 
-            // button3
+            // compileAndRunButton
             // 
-            this.button3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(222, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(93, 28);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Compile && Run";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.compileAndRunButton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.compileAndRunButton.Location = new System.Drawing.Point(222, 4);
+            this.compileAndRunButton.Name = "compileAndRunButton";
+            this.compileAndRunButton.Size = new System.Drawing.Size(93, 28);
+            this.compileAndRunButton.TabIndex = 7;
+            this.compileAndRunButton.Text = "Compile && Run";
+            this.compileAndRunButton.UseVisualStyleBackColor = true;
+            this.compileAndRunButton.Click += new System.EventHandler(this.compileAndRunButton_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.workDirTextBox);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.saveBeforeCompileCheckBox);
+            this.groupBox1.Controls.Add(this.makeComCheckBox);
             this.groupBox1.Location = new System.Drawing.Point(715, 308);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(217, 215);
@@ -284,10 +282,10 @@ namespace SimASM
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // textBox3
+            // workDirTextBox
             // 
             this.workDirTextBox.Location = new System.Drawing.Point(6, 188);
-            this.workDirTextBox.Name = "textBox3";
+            this.workDirTextBox.Name = "workDirTextBox";
             this.workDirTextBox.Size = new System.Drawing.Size(155, 20);
             this.workDirTextBox.TabIndex = 5;
             // 
@@ -300,30 +298,30 @@ namespace SimASM
             this.label2.TabIndex = 4;
             this.label2.Text = "Working directory";
             // 
-            // checkBox2
+            // saveBeforeCompileCheckBox
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(6, 43);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(187, 18);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Save before compilation";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.saveBeforeCompileCheckBox.AutoSize = true;
+            this.saveBeforeCompileCheckBox.Checked = true;
+            this.saveBeforeCompileCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.saveBeforeCompileCheckBox.Location = new System.Drawing.Point(6, 43);
+            this.saveBeforeCompileCheckBox.Name = "saveBeforeCompileCheckBox";
+            this.saveBeforeCompileCheckBox.Size = new System.Drawing.Size(187, 18);
+            this.saveBeforeCompileCheckBox.TabIndex = 1;
+            this.saveBeforeCompileCheckBox.Text = "Save before compilation";
+            this.saveBeforeCompileCheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // makeComCheckBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(6, 19);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(124, 18);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Make com files";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.makeComCheckBox.AutoSize = true;
+            this.makeComCheckBox.Checked = true;
+            this.makeComCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.makeComCheckBox.Location = new System.Drawing.Point(6, 19);
+            this.makeComCheckBox.Name = "makeComCheckBox";
+            this.makeComCheckBox.Size = new System.Drawing.Size(124, 18);
+            this.makeComCheckBox.TabIndex = 0;
+            this.makeComCheckBox.Text = "Make com files";
+            this.makeComCheckBox.UseVisualStyleBackColor = true;
+            this.makeComCheckBox.CheckedChanged += new System.EventHandler(this.makeComCheckBox_CheckedChanged);
             // 
             // tabControl2
             // 
@@ -350,10 +348,10 @@ namespace SimASM
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.treeView1);
-            this.tabPage5.Location = new System.Drawing.Point(4, 26);
+            this.tabPage5.Location = new System.Drawing.Point(4, 27);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(461, 232);
+            this.tabPage5.Size = new System.Drawing.Size(461, 231);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "Operators Library";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -376,11 +374,11 @@ namespace SimASM
             this.tabControl3.Size = new System.Drawing.Size(447, 262);
             this.tabControl3.TabIndex = 10;
             // 
-            // tabPage3
+            // fileTabPage
             // 
             this.fileTabPage.Controls.Add(this.CodeSource);
             this.fileTabPage.Location = new System.Drawing.Point(4, 26);
-            this.fileTabPage.Name = "tabPage3";
+            this.fileTabPage.Name = "fileTabPage";
             this.fileTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.fileTabPage.Size = new System.Drawing.Size(439, 232);
             this.fileTabPage.TabIndex = 0;
@@ -390,10 +388,10 @@ namespace SimASM
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.richTextBox3);
-            this.tabPage6.Location = new System.Drawing.Point(4, 26);
+            this.tabPage6.Location = new System.Drawing.Point(4, 27);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(439, 232);
+            this.tabPage6.Size = new System.Drawing.Size(439, 231);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "(binary result)";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -407,35 +405,35 @@ namespace SimASM
             this.richTextBox3.TabIndex = 0;
             this.richTextBox3.Text = "";
             // 
-            // button5
+            // openFileButton
             // 
-            this.button5.Location = new System.Drawing.Point(685, 4);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(78, 28);
-            this.button5.TabIndex = 11;
-            this.button5.Text = "Open";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.openFileButton.Location = new System.Drawing.Point(685, 4);
+            this.openFileButton.Name = "openFileButton";
+            this.openFileButton.Size = new System.Drawing.Size(78, 28);
+            this.openFileButton.TabIndex = 11;
+            this.openFileButton.Text = "Open";
+            this.openFileButton.UseVisualStyleBackColor = true;
+            this.openFileButton.Click += new System.EventHandler(this.openFileButton_Click);
             // 
-            // button6
+            // saveFileButton
             // 
-            this.button6.Location = new System.Drawing.Point(769, 4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(78, 28);
-            this.button6.TabIndex = 12;
-            this.button6.Text = "Save";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.saveFileButton.Location = new System.Drawing.Point(769, 4);
+            this.saveFileButton.Name = "saveFileButton";
+            this.saveFileButton.Size = new System.Drawing.Size(78, 28);
+            this.saveFileButton.TabIndex = 12;
+            this.saveFileButton.Text = "Save";
+            this.saveFileButton.UseVisualStyleBackColor = true;
+            this.saveFileButton.Click += new System.EventHandler(this.saveFileButton_Click);
             // 
-            // button7
+            // saveFileAsButton
             // 
-            this.button7.Location = new System.Drawing.Point(853, 4);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(78, 28);
-            this.button7.TabIndex = 11;
-            this.button7.Text = "Save As";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.saveFileAsButton.Location = new System.Drawing.Point(853, 4);
+            this.saveFileAsButton.Name = "saveFileAsButton";
+            this.saveFileAsButton.Size = new System.Drawing.Size(78, 28);
+            this.saveFileAsButton.TabIndex = 11;
+            this.saveFileAsButton.Text = "Save As";
+            this.saveFileAsButton.UseVisualStyleBackColor = true;
+            this.saveFileAsButton.Click += new System.EventHandler(this.saveFileAsButton_Click);
             // 
             // openFileDialog1
             // 
@@ -446,17 +444,17 @@ namespace SimASM
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(943, 535);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.saveFileAsButton);
+            this.Controls.Add(this.openFileButton);
             this.Controls.Add(this.tabControl3);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.saveFileButton);
             this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.compileAndRunButton);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Controls.Add(this.compileButton);
+            this.Controls.Add(this.runButton);
+            this.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "Form1";
             this.Text = "SimASM";
             this.tabControl1.ResumeLayout(false);
@@ -480,8 +478,8 @@ namespace SimASM
 
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Diagnostics.Process process1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button runButton;
+        private System.Windows.Forms.Button compileButton;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -493,21 +491,21 @@ namespace SimASM
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code;
         private System.Windows.Forms.DataGridViewTextBoxColumn Source;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button compileAndRunButton;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox makeComCheckBox;
+        private System.Windows.Forms.CheckBox saveBeforeCompileCheckBox;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.TextBox workDirTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button saveFileButton;
+        private System.Windows.Forms.Button openFileButton;
         private System.Windows.Forms.TabControl tabControl3;
         private System.Windows.Forms.TabPage fileTabPage;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button saveFileAsButton;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TabPage tabPage5;
